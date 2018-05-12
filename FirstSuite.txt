@@ -1,0 +1,16 @@
+*** Settings ***
+Library           SeleniumLibrary
+
+*** Variables ***
+${url}            https://hotline.ua/
+${browser}        chrome
+${searchkey}      Iphone 7
+${elem}           //*[@id="page-search"]/div[2]/div/div[1]/div[3]/div/ul/li[1]/div[3]/div/p/a    # first link
+
+*** Test Cases ***
+TestCase
+    SeleniumLibrary.Open Browser    ${url}    ${browser}
+    Input Text    id=searchbox    ${searchkey}
+    Click Button    id=doSearch
+    Wait Until Element Is Visible    ${elem}
+    Click Element    ${elem}
